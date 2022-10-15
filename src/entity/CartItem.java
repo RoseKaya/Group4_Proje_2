@@ -34,6 +34,7 @@ private int quantity;
     }
 
     public int getQuantity() {
+
         return quantity;
     }
 

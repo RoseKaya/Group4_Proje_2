@@ -29,19 +29,20 @@ public class Cart {
 
     public void addToCart(CartItem item){
 
-        for (int i = 0; i <items.size() ; i++) {
-            items.add(item);
+        for(CartItem sepet:items){
 
+            if(item.getItem().equals(sepet.getItem())){
+                sepet.setQuantity(sepet.getQuantity()+item.getQuantity());
+                calculateTotalCartCost();
+                return;
+            }
 
         }
+        items.add(item);
+        calculateTotalCartCost();
 
 
     }
-
-
-
-
-
 
     // Return tipi void olan calculateTotalCartCost() methodu tanimlayin...
     // Bu method cagirildiginda, sepete eklenen tum urunlerin adet bilgilerine gore toplam sepet fiyatini "totalCartCost" hesaplasin...
@@ -49,11 +50,11 @@ public class Cart {
     // addToCart() methodu icerisinde bu methodu cagirmalisiniz ki her urun eklendiginde veya miktar degistiginde toplam fiyat guncellensin...
 
 void calculateTotalCartCost(){
-
+this.totalCartCost=0;
+        for(CartItem c:items){
+            totalCartCost+=c.getQuantity()*c.getItem().getPrice();
+        }
 }
-
-
-
 
     // Return tipi void olan emptyCart() isimli bir method tanimlayin...
     // Bu method cagirildiginda, "items" olarak tanimladiginiz List icerindeki -sepetinizdeki- urunleri silsin-temizlesin-bosaltsin...
@@ -63,8 +64,6 @@ public void emptyCart(){
             this.items.clear();
 
 }
-
-
 
     //----------------------Getter and Setter ---------------------------------------------------------------------
 
